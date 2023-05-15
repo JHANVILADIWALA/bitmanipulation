@@ -1,0 +1,120 @@
+//to print a number in its binary form
+//cout<<bitset<numofbits>(NumberToBeConverted)<<endl;
+cout<<bitset<16>(123)<<endl;
+
+//FUNCTION:
+ void printbinary(int num){
+	for(int i=31;i>=0;i--){
+		cout<<( (num>>i) & 1 );
+	}
+}
+
+//MAX NUMBER THAT CAN BE STORED IN 32 BITS : 2^32 -1
+  cout<<(1LL<<32)-1<<endl; //doesn't overflow // signed int automatically
+
+//LEFT SHIFT << : multiply by 2
+  cout<<(n<<i); => n's binary is shifted to left i times OR  n is multiplied by 2 ... i times OR n*(2^i)
+  
+//RIGHT SHIFT >> : divide by 2
+ cout<<(n>>i) => n/(2^i)
+ 
+//CHECK SET OR UNSET
+if( ( num ) & ( 1<<i ) !=0 )cout<<"set"<<endl; //ith bit
+else cout<<"unset"<<endl;
+
+//SET THE BIT : or with 1
+ printbinary( ( num ) | ( 1<<i ) );
+ 
+ //UNSET THE BIT : and with 0
+ printbinary( ( num ) & (~( 1<<i )) );
+
+//INVERY BINARY : ~ tilda => all 0->1, 1->0 , gives neg of n+1 as answer
+printbinary( ~num );
+
+//TOGGLE : XOR with 1 at that positn ( 1^1=0, 0^1=1 )
+printbinary( ( num ) ^ ( 1<<i ) ); //toggle ith bit
+
+//COUNT SET BITS: 
+int ckt=0;
+for(int i=31;i>=0;i--){
+    if( ( num ) & ( 1<<i ) !=0 )ckt++;
+    }
+cout<<ckt<<endl;
+
+//INBUILT FNS
+__builtin_popcount(n) : find num of setbits (valid only for integers)
+__builtin_popcount(1LL<<35) : for long long
+__builtin_clz(n) : finds number of leading zeroes
+__builtin_cz(n) : finds number of trailing 0s
+
+//ODD EVEN CHECK : and with 1 = ans => if ans=0 means even else odd
+if( (num & 1)  ) cout<<"odd"<<endl;
+else cout<<"even"<<endl;
+
+----------------------------------------------------------------------------
+//UPPERCASE TO LOWERCASE AND VICE VERSA :
+// 5th bit: 1 in lowercase , 0 in UPPERcase
+char A = 'A'; //HAVE TO SET AS 1 TO MAKE IT LOWERCASE
+char a = A | ( 1<<5 ) ; //lowercase
+cout<<a<<endl; 
+cout<<( a & (~( 1<<5 ) ) ; //uppercase
+
+//BLANK SPACE : (1<<5) 
+//UNDERSCORE  : (~(1<<5))
+
+//////////////////INSHORT:::::
+//UC->LC 
+cout<<char('C' | ' ')<<endl;
+
+//LC->UC
+cout<<char('c' & '_' )<<endl;
+---------------------------------------------------------------------------
+//to remember: 
+=> 10000-1 = 1111
+=> 1000-1  = 111
+
+// CLEAR/unset ALL LSB's till ith bit. eg: i=1 in 1111=>1100
+0000011011 (convert this) (i=4)
+1111100000 ( to this )
+0000011111  (for that we need this) = 100000-1 = (1<<5)-1
+cout<<(num& ( ~(1<<(i+1) -1) ))<<endl;
+
+//CLEAR ALL MSB's till ith bit
+cout<<(num& ( (1<<(i+1) -1) ))<<endl;
+--------------------------------------------------------------------------
+//CHECK POWER OF 2
+ 10000 : 16
+&01111 : 15
+=00000
+if( n & (n-1) ){//means not zero
+ cout<<"not a power of 2"<<endl;
+ }
+else{
+  cout<<"power of two"<<endl;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
