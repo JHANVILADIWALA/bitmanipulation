@@ -1,0 +1,26 @@
+//  https://practice.geeksforgeeks.org/problems/1132bd8ee92072cd31441858402641d6800fa6b3/1
+
+public:
+    long long countBits(long long n) {
+        long long ans=0;
+        n++;
+        
+        for(int i=0;i<32;i++){
+            // number of grps= n upon grpsize ... grpsize= 2^(i+1)
+            long long x= n/(1LL<<(i+1));
+            //each grp contributing half the value of grpsize
+            // 2^(i+1)/2= 2^i
+            //numberofgrps*numberofsetbits contibuted by each grp
+            x=x*(1<<i);
+            ans+=x;
+            
+            //now the remaining ones : 
+            if(i<31){
+                long long y= n%(1LL<<(i+1));
+                //half of grp size is set bit so subtract that
+                y=max(0LL,y-(1LL<<i));
+                ans+=y;
+            }
+        }
+        return ans;
+    }
