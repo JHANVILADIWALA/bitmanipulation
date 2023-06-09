@@ -1,0 +1,32 @@
+https://leetcode.com/problems/maximum-xor-after-operations/
+
+class Solution {
+public:
+    int maximumXOR(vector<int>& nums) {
+
+        vector<int>bits(32,0);
+        //storing ckt of bits at ith place
+        for(auto it : nums ){
+           for(int j=31; j>=0 ; j-- ){
+               if( (it>>j) & 1 ){ //set bit
+                   bits[j]++;
+               }
+           }
+        }
+        
+        //bits vector contains total set bits at ith place of all numbers
+        // even -> make xor 0
+        int res=0;
+        for(int i=0; i<32; i++){
+            if( bits[i] !=0 ){
+                if(bits[i]%2==0){ //even
+                    bits[i]--;    /// makes it odd now
+                }
+                //bz it odd.... so set the ith bit of res
+                res = res | (1<<i) ;
+            }
+        }
+        return res;
+
+    }
+};
