@@ -1,0 +1,19 @@
+https://leetcode.com/problems/find-the-original-array-of-prefix-xor/
+
+class Solution {
+public:
+    vector<int> findArray(vector<int>& pref) {
+        vector<int>ans;
+        int n=pref.size();
+
+        ans.push_back(pref[0]);
+        int var=pref[0];
+        for(int i=1;i<n;i++){
+            int x = var ^ pref[i] ;
+            ans.push_back(x);
+            var=var^x;
+
+        }
+        return ans;
+    }
+};
